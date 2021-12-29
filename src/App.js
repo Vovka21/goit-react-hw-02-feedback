@@ -18,21 +18,29 @@ class App extends Component {
     }));
   };
 
-  countTotalFeedback(good, neutral, bad) {
-    const total = good + neutral + bad;
-    return total;
-  }
+  // countTotalFeedback(good, neutral, bad) {
+  //   const total = good + neutral + bad;
+  //   return total;
+  // }
 
-  countPositiveFeedbackPercentage(good, neutral, bad) {
-    const positive = (good / this.countTotalFeedback(good, neutral, bad)) * 100;
-    return Math.round(positive);
-  }
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  // countPositiveFeedbackPercentage(good, neutral, bad) {
+  //   const positive = (good / this.countTotalFeedback(good, neutral, bad)) * 100;
+  //   return Math.round(positive);
+  // }
+
+  countPositiveFeedbackPercentage = () =>
+    Math.round((this.state.good / this.countTotalFeedback()) * 100);
 
   render() {
     const { good, neutral, bad } = this.state;
     const options = this.state;
     const total = this.countTotalFeedback;
-    const positive = this.countPositiveFeedbackPercentage.bind(this);
+    const positive = this.countPositiveFeedbackPercentage;
 
     return (
       <>
